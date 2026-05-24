@@ -136,7 +136,9 @@ sudo rm -rf /usr/local/share/sophus
 ### Option 1: Test with Webcam
 ```bash
 cd $ORB_SLAM3_ROOT_PATH/ORB-SLAM3
-./Examples/Monocular/mono_tum Vocabulary/ORBvoc.txt Examples/Monocular/TUM1.yaml
+./Examples/Monocular/mono_webcam \
+Vocabulary/ORBvoc.txt \
+Examples/Monocular/Webcam.yaml
 ```
 
 Move your camera around. You should see feature tracking and map building in real-time.
