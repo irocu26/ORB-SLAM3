@@ -100,7 +100,7 @@ $ORB_SLAM3_ROOT_PATH/Pangolin/build/examples/HelloPangolin/HelloPangolin
 ### 3. Clone This Repository
 ```bash
 cd $ORB_SLAM3_ROOT_PATH
-git clone <YOUR_FORKED_REPO_URL> ORB-SLAM3
+git clone  "https://github.com/irocu26/ORB-SLAM3.git"
 cd ORB-SLAM3
 ```
 
