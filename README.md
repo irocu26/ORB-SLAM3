@@ -63,6 +63,49 @@ sudo ldconfig
 sudo cp ../config/99-realsense-libusb.rules /etc/udev/rules.d/
 sudo udevadm control --reload-rules && sudo udevadm trigger
 ```
+## Checking Camera Device Mapping
+
+To identify whether the connected camera is the internal webcam or the external USB camera, run:
+
+```bash
+ls /dev/video*
+```
+
+This shows all available video devices.
+
+To identify which `/dev/videoX` belongs to which camera:
+
+```bash
+v4l2-ctl --list-devices
+```
+
+Example output:
+
+```text
+icspring camera: icspring camer (usb-0000:00:14.0-3):
+    /dev/video2
+    /dev/video3
+    /dev/media1
+
+Integrated_Webcam_HD: Integrate (usb-0000:00:14.0-5):
+    /dev/video0
+    /dev/video1
+    /dev/media0
+```
+
+From this output:
+
+- `/dev/video0` and `/dev/video1` correspond to the internal laptop webcam
+- `/dev/video2` and `/dev/video3` correspond to the external USB camera
+
+The ORB-SLAM3 `mono_webcam.cc` file should use the correct device index:
+
+```cpp
+cv::VideoCapture cap(2, cv::CAP_V4L2);
+```
+
+where `2` corresponds to `/dev/video2`.
+
 
 ## Installation
 
